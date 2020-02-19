@@ -201,6 +201,6 @@ public class GuatemalanCalculator implements PostfixCalculator {
         newString.insert(index + 1, stringToBeInserted);
 
         // return the modified String
-        return newString.toString();
+        return newString.toString()
     }
 }
