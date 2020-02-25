@@ -25,8 +25,14 @@ public class GuatemalanCalculator implements PostfixCalculator {
      because java dont include a stack class we created it
      it will be used in method "calculate"
      */
-    private QuetzalStack<Integer> resultStack = new QuetzalStack<Integer>();
 
+    public static GuatemalanCalculator singleCalculator = new GuatemalanCalculator();
+
+    private GuatemalanCalculator() {
+
+    }
+
+    private QuetzalStack<Integer> resultStack = new QuetzalStack<Integer>();
 
     /**
      get the string of a .txt
@@ -201,6 +207,6 @@ public class GuatemalanCalculator implements PostfixCalculator {
         newString.insert(index + 1, stringToBeInserted);
 
         // return the modified String
-        return newString.toString()
+        return newString.toString();
     }
 }

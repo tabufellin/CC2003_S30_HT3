@@ -12,8 +12,9 @@ import java.util.ArrayList;
 public class Main {
     public static void main (String[] args) {
 
+
         // Initializes the calculator and imports text
-        GuatemalanCalculator myCalculator = new GuatemalanCalculator();
+        GuatemalanCalculator myCalculator = GuatemalanCalculator.singleCalculator;
         ArrayList<String> textoEnListas = new ArrayList<String>();
         textoEnListas = myCalculator.importText();
 

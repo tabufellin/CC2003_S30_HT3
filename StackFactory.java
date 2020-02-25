@@ -5,6 +5,8 @@ public class StackFactory<E> {
             return new StackArrayList<>();
         } else if (entry == "vector") {
             return new StackVector<>();
+        } else if (entry == "list") {
+            return null;        //Change to return new List<>();
         } else {
             return null;
         }

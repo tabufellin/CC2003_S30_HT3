@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class StackEjemplo {
     public static void main(String[] args) {
         StackFactory<Integer> myStack = new StackFactory<Integer>();

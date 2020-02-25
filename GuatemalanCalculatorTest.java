@@ -18,14 +18,14 @@ public class GuatemalanCalculatorTest {
      */
     @org.junit.Test
     public void validateText() {
-        GuatemalanCalculator instance = new GuatemalanCalculator();
+        GuatemalanCalculator instance = GuatemalanCalculator.singleCalculator;
         instance.validateText("3 3 +");
         assertEquals(true, instance.validateText("3 3 +"));
     }
 
     @org.junit.Test
     public void calculate() {
-        GuatemalanCalculator instance = new GuatemalanCalculator();
+        GuatemalanCalculator instance = GuatemalanCalculator.singleCalculator;
         instance.validateText("3 2 *");
         instance.calculate("");
         assertEquals(6, instance.calculate(""));
@@ -33,7 +33,7 @@ public class GuatemalanCalculatorTest {
 
     @org.junit.Test
     public void importText() {
-        GuatemalanCalculator instance = new GuatemalanCalculator();
+        GuatemalanCalculator instance = GuatemalanCalculator.singleCalculator;
         ArrayList<String> text = instance.importText();
         assertEquals(text.get(0), "1 2 + 4 5 *");   // Note, if you use a different data file, this test will fail.
     }
