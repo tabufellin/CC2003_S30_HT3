@@ -37,6 +37,7 @@ public class Main {
             int x = 1;
 
             // Validates and performs the operation
+            System.out.println(myCalculator.validateText(aAnalizar));
             if(myCalculator.validateText(aAnalizar)) {
                 x = myCalculator.calculate(aAnalizar);  // Line to analyze
                 System.out.println("El resultado de la linea " + (i + 1) + " es: " + x);

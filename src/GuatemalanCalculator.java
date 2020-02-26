@@ -53,7 +53,7 @@ public class GuatemalanCalculator implements PostfixCalculator {
      */
     public ArrayList<String> importText() {
 
-        String direccion = "datos.txt";
+        String direccion = "src/datos.txt";
         String datosDocumento = leerTxt(direccion);
 
         String[] datosEnArray = datosDocumento.split(" ");
@@ -121,6 +121,7 @@ public class GuatemalanCalculator implements PostfixCalculator {
                 case "-9":
                     int number = Integer.parseInt(arrayLocation);
                     resultStack.push(number);
+
                     break;
 
                 case "+":
@@ -129,6 +130,7 @@ public class GuatemalanCalculator implements PostfixCalculator {
                         secondNumber = resultStack.pop();
                         resultStack.push(firstNumber + secondNumber);
                     } catch (Exception e) {
+                        //System.out.println("holaaaa");
                         return false;
                     }
                     break;
@@ -149,6 +151,8 @@ public class GuatemalanCalculator implements PostfixCalculator {
                         secondNumber = resultStack.pop();
                         resultStack.push(firstNumber * secondNumber);
                     } catch (Exception e) {
+                        //System.out.println("holaaaa");
+
                         return false;
                     }
                     break;

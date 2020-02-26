@@ -38,7 +38,8 @@ public class ListSingle<E> extends List<E> {
 
     //Metodo para borrar al final de la lista.
     public E pop() {
-        NodoListaSimple<E> temporal = ultimo;
+        NodoListaSimple<E> eliminar = null;
+        E temporal = ultimo.getValor();
         if(empty()) {
             return null;
         }
@@ -51,13 +52,13 @@ public class ListSingle<E> extends List<E> {
             while(actual.nodoDer != ultimo) {
                 actual = actual.nodoDer;
             }
+            eliminar = actual.nodoDer;
             actual.nodoDer = null;
 
             ultimo = actual;
         }
         this.tamano--;
-        assert ultimo != null;
-        return ultimo.getValor();
+        return temporal;
     }
 
     public E peek() {
