@@ -1,3 +1,9 @@
+/**
+ * Clase que define las operaciones básicas que debe tener una lista
+ * circular simple.
+ * @author xavier
+ * http://codigolibre.weebly.com/blog/listas-circulares-simples-en-java
+ */
 public abstract class CircularList<E> extends StackList<E> {
 
     // Puntero que indica el inicio de la lista o conocida tambien
