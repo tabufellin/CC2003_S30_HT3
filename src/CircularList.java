@@ -4,7 +4,7 @@
  * @author xavier
  * http://codigolibre.weebly.com/blog/listas-circulares-simples-en-java
  */
-public abstract class CircularList<E> extends StackList<E> {
+public class CircularList<E> extends StackList<E> {
 
     // Puntero que indica el inicio de la lista o conocida tambien
     // como cabeza de la lista.

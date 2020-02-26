@@ -4,7 +4,7 @@
 *https://www.javamexico.org/blogs/pain5610/estructura_de_datos_java_listas_simplemente_enlazadas_primer_aporte
 * */
 
-public abstract class ListSingle<E> extends StackList<E> {
+public class ListSingle<E> extends StackList<E> {
     private NodoListaSimple<E> primero;
     private NodoListaSimple<E> ultimo;
     private int tamano;
@@ -15,12 +15,12 @@ public abstract class ListSingle<E> extends StackList<E> {
         this.tamano = 0;
     }
 
-    public int tamano() {
+    public int size() {
         return tamano;
     }
 
     //Metodo para agregar al final de la lista.
-    public void add(E dato) {
+    public void add(int i,E dato) {
         if(isEmpty()) {
             NodoListaSimple<E> nuevo = new NodoListaSimple<E>(dato);
             primero = nuevo;
@@ -37,8 +37,9 @@ public abstract class ListSingle<E> extends StackList<E> {
     }
 
     //Metodo para borrar al final de la lista.
-    public NodoListaSimple<E> remove() {
+    public E remove(int i) {
         NodoListaSimple<E> eliminar = null;
+        NodoListaSimple<E> temporal = ultimo;
         if(isEmpty()) {
             return null;
         }
@@ -57,7 +58,7 @@ public abstract class ListSingle<E> extends StackList<E> {
             ultimo = actual;
         }
         this.tamano--;
-        return eliminar;
+        return ultimo.getValor();
     }
 
     public E get(int posicion) throws Exception{
