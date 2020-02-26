@@ -9,11 +9,12 @@ public class  StackFactory<E> {
             case "list":
                 return new ListSingle<E>();        //Change to return new List<>();
 
-            case "listDouble":
+            case "listdouble":
                 return new DoubleList<E>();
             case "circular":
                 return new CircularList<E>();
             default:
+                System.err.println("El tipo de stack introducido no es correcto");
                 return null;
         }
     }

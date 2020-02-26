@@ -14,11 +14,14 @@ public class GuatemalanCalculatorTest {
 
     /**
      * These tests check the stack methods by using GuatemalanCalculator
-     * method results, and comparing with expected values.
+     * method results, and comparing with expected values. It also tests
+     * that the stacks are created properly.
+     *
      */
     @org.junit.Test
     public void validateText() {
         GuatemalanCalculator instance = GuatemalanCalculator.singleCalculator;
+        instance.StackType("vector");
         instance.validateText("3 3 +");
         assertEquals(true, instance.validateText("3 3 +"));
     }
@@ -26,6 +29,7 @@ public class GuatemalanCalculatorTest {
     @org.junit.Test
     public void calculate() throws Exception {
         GuatemalanCalculator instance = GuatemalanCalculator.singleCalculator;
+        instance.StackType("circular");
         instance.validateText("3 2 *");
         instance.calculate("");
         assertEquals(6, instance.calculate(""));

@@ -1,7 +1,6 @@
 import java.util.NoSuchElementException;
-
 /**
- * this class keeps track of each element information
+ * this class contains the required methods for the Double linked list implementation
  *
  * @author java2novice
  * Edited by @tabufellin @PingMaster99
@@ -14,11 +13,13 @@ public class DoubleList<E> extends List<E> {
     private Node tail;
     private int size;
 
+    private boolean firstPush = true;
+
     public DoubleList() {
         size = 0;
     }
 
-    public class Node {
+    private class Node {
         E element;
         Node next;
         Node prev;
@@ -27,10 +28,6 @@ public class DoubleList<E> extends List<E> {
             this.element = element;
             this.next = next;
             this.prev = prev;
-        }
-
-        public E getValue() {
-            return element;
         }
     }
 
@@ -49,52 +46,30 @@ public class DoubleList<E> extends List<E> {
      * @param element
      */
     public void push(E element) {
+        if(firstPush) {
+            addFirst(element);
+            this.firstPush = false;
+        }
         Node tmp = new Node(element, null, tail);
-        if (tail != null) {
-            tail.next = tmp;
-        }
+        if(tail != null) {tail.next = tmp;}
         tail = tmp;
-        if (head == null) {
-            head = tmp;
-        }
+        if(head == null) { head = tmp;}
         size++;
-        System.out.println("adding: " + element);
     }
 
 
     public E peek() throws Exception {
-        return iterateForward();
+        return tail.element;
     }
 
-    /**
-     * this method walks forward through the linked list
-     */
-    public E iterateForward() {
 
-        System.out.println("iterating forward..");
-        Node tmp = head;
-        while (tmp != null) {
-            System.out.println(tmp.element);
-            tmp = tmp.next;
-        }
-        return tmp.element;
+    public void addFirst(E element) {
+        Node tmp = new Node(element, head, null);
+        if(head != null ) {head.prev = tmp;}
+        head = tmp;
+        if(tail == null) { tail = tmp;}
+        size++;
     }
-
-    /**
-     * this method walks backward through the linked list
-     */
-    public E iterateBackward(int index) {
-
-        System.out.println("iterating backword..");
-        Node tmp = tail;
-        while (tmp != null && index != 0) {
-            System.out.println(tmp.element);
-            tmp = tmp.prev;
-            index --;
-        }
-        return tmp.element;
-    }
-
 
     /**
      * this method removes element from the end of the linked list
@@ -107,7 +82,6 @@ public class DoubleList<E> extends List<E> {
         tail = tail.prev;
         tail.next = null;
         size--;
-        System.out.println("deleted: " + tmp.element);
         return tmp.element;
     }
 }

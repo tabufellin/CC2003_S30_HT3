@@ -1,8 +1,8 @@
 /*
-*
-*
-*https://www.javamexico.org/blogs/pain5610/estructura_de_datos_java_listas_simplemente_enlazadas_primer_aporte
-* */
+ *
+ *
+ *https://www.javamexico.org/blogs/pain5610/estructura_de_datos_java_listas_simplemente_enlazadas_primer_aporte
+ * */
 
 public class ListSingle<E> extends List<E> {
     private NodoListaSimple<E> primero;
