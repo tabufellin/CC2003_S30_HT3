@@ -1,9 +1,5 @@
-/*
- * Lista Simplemente enlazada.
- *
- */
 /**
- *
+ * Lista Simplemente enlazada.
  * @author Pain
  */
 //Clase Nodo. Utiliza el enlace llamado nodoDer o nodo derecho y el valor a introducir.

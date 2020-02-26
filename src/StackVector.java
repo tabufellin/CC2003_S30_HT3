@@ -1,5 +1,13 @@
 import java.util.Vector;
-
+/**
+ * <h1>StackVector</h1>
+ * Stack in vector form
+ * <p>
+ *
+ * @author Sebastian Gonzales (tabufellin) Pablo Ruiz (PingMaster99)
+ * @version 1.0
+ * @since 2020-02-26
+ **/
 public class StackVector<E> extends AbstractStack<E>{
 
     protected  Vector<E> stackArray;

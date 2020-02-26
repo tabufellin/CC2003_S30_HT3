@@ -1,8 +1,13 @@
-/*
+/**
+ * <h1>ListSingle</h1>
+ * Simple link list methods and implementation
+ * <p>
  *
- *
- *https://www.javamexico.org/blogs/pain5610/estructura_de_datos_java_listas_simplemente_enlazadas_primer_aporte
- * */
+ * @author Sebastian Gonzales (tabufellin) Pablo Ruiz (PingMaster99)
+ * @version 1.0
+ * @since 2020-02-26
+ * https://www.javamexico.org/blogs/pain5610/estructura_de_datos_java_listas_simplemente_enlazadas_primer_aporte
+ **/
 
 public class ListSingle<E> extends List<E> {
     private NodoListaSimple<E> primero;

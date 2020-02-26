@@ -1,5 +1,13 @@
 import java.util.ArrayList;
-
+/**
+ * <h1>StackArrayList</h1>
+ * Stack in ArrayList form
+ * <p>
+ *
+ * @author Sebastian Gonzales (tabufellin) Pablo Ruiz (PingMaster99)
+ * @version 1.0
+ * @since 2020-02-26
+ **/
 public class StackArrayList<E> extends AbstractStack<E> {
 
     private ArrayList<E> stackArray = new ArrayList<E>();
