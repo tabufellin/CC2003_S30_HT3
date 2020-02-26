@@ -136,7 +136,7 @@ public abstract class CircularList<E> extends StackList<E> {
             // Disminuye el contador de tamaño de la lista.
             tamanio--;
         }
-        return ultimo.getValor();
+        return temporal.getValor();
     }
 
     /*
