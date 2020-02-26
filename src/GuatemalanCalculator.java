@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * <h1>GuatemalanCalculator</h1>
  * A class that is used to get a text from a .txt file
@@ -26,13 +28,16 @@ public class GuatemalanCalculator implements PostfixCalculator {
      it will be used in method "calculate"
      */
 
-    public static GuatemalanCalculator singleCalculator = new GuatemalanCalculator();
+    private QuetzalStack<Integer> resultStack;
 
-    private GuatemalanCalculator() {
+    public GuatemalanCalculator(String tipoElegido) {
+
+        resultStack= new QuetzalStack<>(tipoElegido);
 
     }
 
-    private QuetzalStack<Integer> resultStack = new QuetzalStack<Integer>();
+
+
 
     /**
      get the string of a .txt
@@ -48,8 +53,8 @@ public class GuatemalanCalculator implements PostfixCalculator {
         String direccion = "datos.txt";
         String datosDocumento = leerTxt(direccion);
 
-        String datosEnArray[] = datosDocumento.split(" ");
-        ArrayList<String> datosEnArrayList = new ArrayList();
+        String[] datosEnArray = datosDocumento.split(" ");
+        ArrayList<String> datosEnArrayList = new ArrayList<>();
         String salto = "S";
         int largoValor;
         int contadorCuantosSaltos = 0;
@@ -60,21 +65,18 @@ public class GuatemalanCalculator implements PostfixCalculator {
             largoValor = x.length();
 
             if (largoValor > 1) {
-                if (x.contains(salto) == false) {
+                if (!x.contains(salto)) {
                     datosDocumento = insertString(datosDocumento, salto, (i+contadorCuantosSaltos*salto.length() )*2);
 
                     contadorCuantosSaltos++;
                 }
 
             }
-            largoValor = 0;
         }
 
         datosEnArray = datosDocumento.split(salto);
 
-        for (int i = 0; i < datosEnArray.length; i++) {
-            datosEnArrayList.add(datosEnArray[i]);
-        }
+        Collections.addAll(datosEnArrayList, datosEnArray);
 
         return datosEnArrayList;
     }
@@ -87,17 +89,33 @@ public class GuatemalanCalculator implements PostfixCalculator {
      * @return boolean
      */
     public boolean validateText(String line) {
-        int firstNumber = 0;
-        int secondNumber = 0;
-        String dataArray[] = line.split(" ");   // Makes an array with all the characters in the line, excluding spaces
+        int firstNumber;
+        int secondNumber;
+        String[] dataArray = line.split(" ");   // Makes an array with all the characters in the line, excluding spaces
 
-        for(int i = 0; i < dataArray.length; i++) {
-            String arrayLocation = dataArray[i];    // Gets each position in the array
-
+        // Gets each position in the array
+        for (String arrayLocation : dataArray) {
             // The switch checks for all valid characters
             switch (arrayLocation) {
-                case "0": case "1": case "2": case "3": case "4": case "5": case "6": case "7": case "8": case "9":
-                case "-1": case "-2": case "-3": case "-4": case "-5": case "-6": case "-7": case "-8": case "-9":
+                case "0":
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "-1":
+                case "-2":
+                case "-3":
+                case "-4":
+                case "-5":
+                case "-6":
+                case "-7":
+                case "-8":
+                case "-9":
                     int number = Integer.parseInt(arrayLocation);
                     resultStack.push(number);
                     break;
@@ -155,7 +173,7 @@ public class GuatemalanCalculator implements PostfixCalculator {
      * @param line the line that is going to be calculated
      * @return int
      */
-    public int calculate(String line) {
+    public int calculate(String line) throws Exception {
         return resultStack.peek();  // Note that we don't need to calculate everything again, as this is done in verify.
     }
 
@@ -171,15 +189,15 @@ public class GuatemalanCalculator implements PostfixCalculator {
         try {
 
             BufferedReader bf = new BufferedReader(new FileReader(direccion));
-            String temp = "";
+            StringBuilder temp = new StringBuilder();
             String bfRead;
 
             while((bfRead = bf.readLine()) != null) {
 
-                temp = temp + bfRead; // Saves it in temp
+                temp.append(bfRead); // Saves it in temp
             }
 
-            texto = temp;
+            texto = temp.toString();
 
         } catch (Exception e) {
             System.err.println("No se encontro un archivo");    // If no file is found, this is displayed
@@ -199,8 +217,8 @@ public class GuatemalanCalculator implements PostfixCalculator {
      */
     private static String insertString( String originalString, String stringToBeInserted, int index)  {
         // Create a new StringBuffer
-        StringBuffer newString
-                = new StringBuffer(originalString);
+        StringBuilder newString
+                = new StringBuilder(originalString);
 
         // Insert the strings to be inserted
         // using insert() method

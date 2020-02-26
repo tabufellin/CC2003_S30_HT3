@@ -12,6 +12,6 @@ public interface PostfixCalculator {
 
     ArrayList<String> importText();
     boolean validateText(String line);
-    int calculate(String line);
+    int calculate(String line) throws Exception;
 
 }
