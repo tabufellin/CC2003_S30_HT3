@@ -44,7 +44,7 @@ public class DoubleList<E> extends StackList<E> {
     }
 
     /**
-     * adds element at the end of the linked list
+     * adds element at the end of the linked list (due to the nature of a stack, only this is needed)
      *
      * @param element
      */
@@ -64,34 +64,37 @@ public class DoubleList<E> extends StackList<E> {
 
 
     public E get(int i) throws Exception {
-        Node aux = tail;
-        return head.getValue();
+        return iterateForward(i);
     }
 
     /**
      * this method walks forward through the linked list
      */
-    public void iterateForward() {
+    public E iterateForward(int index) {
 
         System.out.println("iterating forward..");
         Node tmp = head;
-        while (tmp != null) {
+        while (tmp != null && index != 0) {
             System.out.println(tmp.element);
             tmp = tmp.next;
+            index--;
         }
+        return tmp.element;
     }
 
     /**
      * this method walks backward through the linked list
      */
-    public void iterateBackward() {
+    public E iterateBackward(int index) {
 
         System.out.println("iterating backword..");
         Node tmp = tail;
-        while (tmp != null) {
+        while (tmp != null && index != 0) {
             System.out.println(tmp.element);
             tmp = tmp.prev;
+            index --;
         }
+        return tmp.element;
     }
 
 
