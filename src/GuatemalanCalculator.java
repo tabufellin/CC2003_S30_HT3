@@ -30,10 +30,13 @@ public class GuatemalanCalculator implements PostfixCalculator {
 
     private QuetzalStack<Integer> resultStack;
 
-    public GuatemalanCalculator(String tipoElegido) {
+    public static GuatemalanCalculator singleCalculator = new GuatemalanCalculator();
+    private GuatemalanCalculator() {
 
-        resultStack= new QuetzalStack<>(tipoElegido);
+    }
 
+    public void StackType(String type) {
+        resultStack= new QuetzalStack<>(type);
     }
 
 

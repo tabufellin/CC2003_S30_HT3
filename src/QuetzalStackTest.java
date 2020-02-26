@@ -15,16 +15,16 @@ public class QuetzalStackTest {
      * method results, and comparing them with expected values.
      */
     @Test
-    public void push() {
-        QuetzalStack<Integer> instance = new QuetzalStack<>();
+    public void push() throws Exception {
+        QuetzalStack<Integer> instance = new QuetzalStack<>("arraylist");
         instance.push(99);
         int x = instance.peek();
         assertEquals(99,x);
     }
 
     @Test
-    public void pop() {
-        QuetzalStack<Integer> instance = new QuetzalStack<>();
+    public void pop() throws Exception {
+        QuetzalStack<Integer> instance = new QuetzalStack<>("arraylist");
         instance.push(1234);
         instance.push(4321);
         instance.pop();
@@ -33,8 +33,8 @@ public class QuetzalStackTest {
     }
 
     @Test
-    public void peek() {
-        QuetzalStack<Integer> instance = new QuetzalStack<>();
+    public void peek() throws Exception {
+        QuetzalStack<Integer> instance = new QuetzalStack<>("arraylist");
         instance.push(987654321);
         int x = instance.peek();
         assertEquals(987654321, x);
@@ -42,13 +42,13 @@ public class QuetzalStackTest {
 
     @Test
     public void empty() {
-        QuetzalStack<Integer> instance = new QuetzalStack<>();
+        QuetzalStack<Integer> instance = new QuetzalStack<>("arraylist");
         assertEquals(true, instance.empty());
     }
 
     @Test
     public void size() {
-        QuetzalStack<Integer> instance = new QuetzalStack<>();
+        QuetzalStack<Integer> instance = new QuetzalStack<>("arraylist");
         instance.push(1);
         instance.push(2);
         instance.push(3);

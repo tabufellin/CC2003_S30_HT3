@@ -24,7 +24,7 @@ public class GuatemalanCalculatorTest {
     }
 
     @org.junit.Test
-    public void calculate() {
+    public void calculate() throws Exception {
         GuatemalanCalculator instance = GuatemalanCalculator.singleCalculator;
         instance.validateText("3 2 *");
         instance.calculate("");

@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * <h1>Main</h1>
  * This is the main class to run the postfix calculator; it displays
@@ -10,11 +12,22 @@ import java.util.ArrayList;
  * @since 2020-02-19
  **/
 public class Main {
-    public static void main (String[] args) {
+    public static void main (String[] args) throws Exception {
 
 
         // Initializes the calculator and imports text
         GuatemalanCalculator myCalculator = GuatemalanCalculator.singleCalculator;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Introduzca el tipo de stack que desea utilizar:");
+        System.out.println("'Arraylist' para ArrayList");
+        System.out.println("'Vector' para Vector");
+        System.out.println("'List' para Lista simplemente enlazada");
+        System.out.println("'Listdouble' para Lista doblemente enlazada");
+        System.out.println("'Circular' para lista circular");
+
+        String userInput = input.nextLine();
+        myCalculator.StackType(userInput);
+
         ArrayList<String> textoEnListas = new ArrayList<String>();
         textoEnListas = myCalculator.importText();
 

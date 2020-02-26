@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  *
  * Retrieved from https://www.java2novice.com/data-structures-in-java/linked-list/doubly-linked-list/
  */
-public class DoubleList<E> extends StackList<E> {
+public class DoubleList<E> extends List<E> {
 
     private Node head;
     private Node tail;
@@ -48,8 +48,7 @@ public class DoubleList<E> extends StackList<E> {
      *
      * @param element
      */
-    public void add(int i, E element) {
-        i = 0;
+    public void push(E element) {
         Node tmp = new Node(element, null, tail);
         if (tail != null) {
             tail.next = tmp;
@@ -63,21 +62,20 @@ public class DoubleList<E> extends StackList<E> {
     }
 
 
-    public E get(int i) throws Exception {
-        return iterateForward(i);
+    public E peek() throws Exception {
+        return iterateForward();
     }
 
     /**
      * this method walks forward through the linked list
      */
-    public E iterateForward(int index) {
+    public E iterateForward() {
 
         System.out.println("iterating forward..");
         Node tmp = head;
-        while (tmp != null && index != 0) {
+        while (tmp != null) {
             System.out.println(tmp.element);
             tmp = tmp.next;
-            index--;
         }
         return tmp.element;
     }
@@ -103,8 +101,7 @@ public class DoubleList<E> extends StackList<E> {
      *
      * @return
      */
-    public E remove(int i) {
-        i = 0;
+    public E pop() {
         if (size == 0) throw new NoSuchElementException();
         Node tmp = tail;
         tail = tail.prev;
