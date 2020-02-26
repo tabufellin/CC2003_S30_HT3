@@ -102,6 +102,8 @@ public abstract class CircularList<E> extends StackList<E> {
     public E remove(int posicion){
         // Verifica si la posición ingresada se encuentre en el rango
         // >= 0 y < que el numero de elementos del la lista.
+        Nodo<E> temporal = ultimo;
+
         if(posicion>=0 && posicion<tamanio){
             // Consulta si el nodo a eliminar es el primero
             if(posicion == 0){
@@ -134,7 +136,7 @@ public abstract class CircularList<E> extends StackList<E> {
             // Disminuye el contador de tamaño de la lista.
             tamanio--;
         }
-        return null;
+        return ultimo.getValor();
     }
 
     /*
