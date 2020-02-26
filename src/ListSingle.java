@@ -4,7 +4,7 @@
 *https://www.javamexico.org/blogs/pain5610/estructura_de_datos_java_listas_simplemente_enlazadas_primer_aporte
 * */
 
-public class ListSingle<E> extends StackList<E> {
+public class ListSingle<E> extends List<E> {
     private NodoListaSimple<E> primero;
     private NodoListaSimple<E> ultimo;
     private int tamano;
@@ -20,15 +20,15 @@ public class ListSingle<E> extends StackList<E> {
     }
 
     //Metodo para agregar al final de la lista.
-    public void add(int i,E dato) {
-        if(isEmpty()) {
-            NodoListaSimple<E> nuevo = new NodoListaSimple<E>(dato);
+    public void push(E dato) {
+        if(empty()) {
+            NodoListaSimple<E> nuevo = new NodoListaSimple<>(dato);
             primero = nuevo;
             ultimo = nuevo;
             nuevo.nodoDer = nuevo;
         }
         else {
-            NodoListaSimple<E> nuevo = new NodoListaSimple<E>(dato);
+            NodoListaSimple<E> nuevo = new NodoListaSimple<>(dato);
             nuevo.nodoDer = null;
             ultimo.nodoDer = nuevo;
             ultimo = nuevo;
@@ -37,10 +37,9 @@ public class ListSingle<E> extends StackList<E> {
     }
 
     //Metodo para borrar al final de la lista.
-    public E remove(int i) {
-        NodoListaSimple<E> eliminar = null;
+    public E pop() {
         NodoListaSimple<E> temporal = ultimo;
-        if(isEmpty()) {
+        if(empty()) {
             return null;
         }
         if(primero == ultimo) {
@@ -52,36 +51,18 @@ public class ListSingle<E> extends StackList<E> {
             while(actual.nodoDer != ultimo) {
                 actual = actual.nodoDer;
             }
-            eliminar = actual.nodoDer;
             actual.nodoDer = null;
 
             ultimo = actual;
         }
         this.tamano--;
+        assert ultimo != null;
         return ultimo.getValor();
     }
 
-    public E get(int posicion) throws Exception{
+    public E peek() {
         // Verifica si la posición ingresada se encuentre en el rango
         // >= 0 y < que el numero de elementos del la lista.
-        if(posicion>=0 && posicion<tamano){
-            // Consulta si la posicion es el inicio de la lista.
-            if (posicion == 0) {
-                // Retorna el valor del inicio de la lista.
-                return primero.getValor();
-            }else{
-                // Crea una copia de la lista.
-                NodoListaSimple<E> aux = primero;
-                // Recorre la lista hasta la posición ingresada.
-                for (int i = 0; i < posicion; i++) {
-                    aux = aux.getSiguiente();
-                }
-                // Retorna el valor del nodo.
-                return aux.getValor();
-            }
-            // Crea una excepción de Posicion inexistente en la lista.
-        } else {
-            throw new Exception("Posicion inexistente en la lista.");
-        }
+        return ultimo.getValor();
     }
 }

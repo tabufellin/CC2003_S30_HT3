@@ -9,37 +9,14 @@ import java.util.ArrayList;
  * @since 2020-02-04
  **/
 public class QuetzalStack<E> implements Stack<E> {
-    List<E> list;
-    // if true entonces lista y si false entonces es stack
-    boolean tipo;
+
     Stack<E>  stack;
 
 
     public QuetzalStack (String tipoElegido) {
-        if (tipoElegido.equals("ArrayList")) {
-            ArrayList<E> stack = new ArrayList<E>();
-            tipo = false;
+        StackFactory<E> sf = new StackFactory<>();
+        stack = (Stack<E>) sf.getStack(tipoElegido);
 
-        }
-        if (tipoElegido.equals("ListSingle")) {
-            ListSingle<E> list = new ListSingle<E>();
-            tipo = true;
-        }
-        if (tipoElegido.equals("CircularList")) {
-            CircularList<E> list = new CircularList<E>();
-            tipo = true;
-        }
-        if (tipoElegido.equals("StackVector")) {
-            StackVector<E> stack = new StackVector<E>();
-            tipo = false;
-        }
-        if (tipoElegido.equals("DoubleList")) {
-            DoubleList<E> list = new DoubleList<E>();
-            tipo = true;
-        } else {
-            ArrayList<E> stack = new ArrayList<E>();
-            tipo = false;
-        }
     }
 
     /**
@@ -47,14 +24,7 @@ public class QuetzalStack<E> implements Stack<E> {
      * @param item the item to be pushed into the stack.
      */
     public void push(E item) {
-
-        if (tipo) {
-            list.add(list.size() - 1, item);
-        } else {
-            stack.push(item);
-        }
-
-
+        stack.push(item);
     }
 
     /**
@@ -62,11 +32,7 @@ public class QuetzalStack<E> implements Stack<E> {
      * @return E generic type with the contents of the last item.
      */
     public E pop() {
-        if (tipo) {
-            return list.remove(list.size() - 1);
-        } else {
-            return stack.pop();
-        }
+        return stack.pop();
     }
 
     /**
@@ -75,11 +41,7 @@ public class QuetzalStack<E> implements Stack<E> {
      * @return E generic type with the contents of the last item.
      */
     public E peek() throws Exception {
-        if (tipo) {
-            return list.get(list.size() - 1);
-        } else {
             return stack.peek();
-        }
     }
 
     /**
@@ -87,11 +49,7 @@ public class QuetzalStack<E> implements Stack<E> {
      * @return boolean true-> stack is empty false-> it is not.
      */
     public boolean empty() {
-        if (tipo) {
-            return list.isEmpty();
-        } else {
             return stack.empty();
-        }
     }
 
     /**
@@ -100,11 +58,7 @@ public class QuetzalStack<E> implements Stack<E> {
      * @return int number of elements in the stack.
      */
     public int size() {
-        if (tipo) {
-            return list.size();
-        } else {
             return stack.size();
-        }
 
     }
 

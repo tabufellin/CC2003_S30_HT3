@@ -4,7 +4,7 @@
  * @author xavier
  * http://codigolibre.weebly.com/blog/listas-circulares-simples-en-java
  */
-public class CircularList<E> extends StackList<E> {
+public class CircularList<E> extends List<E> {
 
     // Puntero que indica el inicio de la lista o conocida tambien
     // como cabeza de la lista.
@@ -24,95 +24,58 @@ public class CircularList<E> extends StackList<E> {
     }
 
     /**
-     * Inserta un nuevo nodo despues en una posición determinada.
-     * @param posicion en la cual se va a insertar el nuevo nodo.
-     * @param valor valor del nuevo nodo de la lista.
+     * Agrega un nuevo nodo al final de la lista circular.
+     * @param valor a agregar.
      */
-    public void add(int posicion, E valor){
-        // Verifica si la posición ingresada se encuentre en el rango
-        // >= 0 y <= que el numero de elementos del la lista.
-        if(posicion>=0 && posicion<=tamanio){
-            Nodo<E> nuevo = new Nodo<E>();
-            nuevo.setValor(valor);
-            // Consulta si el nuevo nodo a ingresar va al inicio de la lista.
-            if(posicion == 0){
-                // Une el nuevo nodo con la lista existente.
-                nuevo.setSiguiente(inicio);
-                // Renombra al nuevo nodo como el inicio de la lista.
-                inicio = nuevo;
-                // El puntero del ultimo debe apuntar al primero.
-                ultimo.setSiguiente(inicio);
-            }
-            else{
-                // Si el nodo a inserta va al final de la lista.
-                if(posicion == tamanio){
-                    // Apuntamos con el ultimo nodo de la lista al nuevo.
-                    ultimo.setSiguiente(nuevo);
-                    // Apuntamos con el nuevo nodo al inicio de la lista.
-                    nuevo.setSiguiente(inicio);
-                    // Como ahora como el nuevo nodo es el ultimo se actualiza
-                    // la variable ultimo.
-                    ultimo = nuevo;
-                }
-                else{
-                    // Si el nodo a insertar va en el medio de la lista.
-                    Nodo<E> aux = inicio;
-                    // Recorre la lista hasta llegar al nodo anterior
-                    // a la posicion en la cual se insertara el nuevo nodo.
-                    for (int i = 0; i < (posicion-1); i++) {
-                        aux = aux.getSiguiente();
-                    }
-                    // Guarda el nodo siguiente al nodo en la posición
-                    // en la cual va a insertar el nevo nodo.
-                    Nodo<E> siguiente = aux.getSiguiente();
-                    // Inserta el nuevo nodo en la posición indicada.
-                    aux.setSiguiente(nuevo);
-                    // Une el nuevo nodo con el resto de la lista.
-                    nuevo.setSiguiente(siguiente);
-                }
-            }
-            // Incrementa el contador de tamaño de la lista.
-            tamanio++;
+    public void push(E valor){
+        // Define un nuevo nodo.
+        Nodo<E> nuevo = new Nodo<>();
+        // Agrega al valor al nodo.
+        nuevo.setValor(valor);
+        // Consulta si la lista esta vacia.
+        if (empty()) {
+            // Inicializa la lista agregando como inicio al nuevo nodo.
+            inicio = nuevo;
+            // De igual forma el ultimo nodo sera el nuevo.
+            ultimo = nuevo;
+            // Y el puntero del ultimo debe apuntar al primero.
+            ultimo.setSiguiente(inicio);
+            // Caso contrario el nodo se agrega al final de la lista.
+        } else{
+            // Apuntamos con el ultimo nodo de la lista al nuevo.
+            ultimo.setSiguiente(nuevo);
+            // Apuntamos con el nuevo nodo al inicio de la lista.
+            nuevo.setSiguiente(inicio);
+            // Como ahora como el nuevo nodo es el ultimo se actualiza
+            // la variable ultimo.
+            ultimo = nuevo;
         }
+        // Incrementa el contador de tamaño de la lista
+        tamanio++;
     }
 
-    public E get(int posicion) throws Exception{
-        // Verifica si la posición ingresada se encuentre en el rango
-        // >= 0 y < que el numero de elementos del la lista.
-        if(posicion>=0 && posicion<tamanio){
-            // Consulta si la posicion es el inicio de la lista.
-            if (posicion == 0) {
-                // Retorna el valor del inicio de la lista.
-                return inicio.getValor();
-            }else{
-                // Crea una copia de la lista.
-                Nodo<E> aux = inicio;
-                // Recorre la lista hasta la posición ingresada.
-                for (int i = 0; i < posicion; i++) {
-                    aux = aux.getSiguiente();
-                }
-                // Retorna el valor del nodo.
-                return aux.getValor();
-            }
-            // Crea una excepción de Posicion inexistente en la lista.
-        } else {
-            throw new Exception("Posicion inexistente en la lista.");
-        }
+
+    /**
+     * Obtiene el valor de un nodo en una determinada posición.
+     * @return un numero entero entre [0,n-1] n = numero de nodos de la lista.
+     */
+    public E peek() {
+        return ultimo.getValor();
     }
 
     /**
      * Elimina un nodo que se encuentre en la lista ubicado
      * por su posición.
-     * @param posicion en la cual se encuentra el nodo a eliminar.
      */
-    public E remove(int posicion){
+    public E pop(){
+        int position = tamanio - 1;
         // Verifica si la posición ingresada se encuentre en el rango
         // >= 0 y < que el numero de elementos del la lista.
         Nodo<E> temporal = ultimo;
 
-        if(posicion>=0 && posicion<tamanio){
+        if(position>=0 && position<tamanio){
             // Consulta si el nodo a eliminar es el primero
-            if(posicion == 0){
+            if(position == 0){
                 // Elimina el primer nodo apuntando al siguinte.
                 inicio = inicio.getSiguiente();
                 // Apuntamos con el ultimo nodo de la lista al inicio.
@@ -124,7 +87,7 @@ public class CircularList<E> extends StackList<E> {
                 // Crea una copia de la lista.
                 Nodo<E> aux = inicio;
                 // Recorre la lista hasta lleger al nodo anterior al eliminar.
-                for (int i = 0; i < posicion-1; i++) {
+                for (int i = 0; i < position-1; i++) {
                     aux = aux.getSiguiente();
                 }
                 if (aux.getSiguiente() == ultimo) {
